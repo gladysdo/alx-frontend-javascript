@@ -5,12 +5,13 @@ function updateStudentGradeByCity(studentList, city, newGrades) {
   // Use map to update grades for students in the specified city
   const updatedStudents = studentsInCity.map((student) => {
     // Find the corresponding grade in newGrades or set grade to 'N/A' if not found
-    const { grade = 'N/A' } = newGrades.find((grade) => grade.studentId === student.id);
+    const gradeObject = newGrades.find((grade) => grade.studentId === student.id);
+    const grade = gradeObject ? gradeObject.grade : 'N/A';
 
-    // Return the updated student object using property shorthand
+    // Return the updated student object
     return {
       ...student,
-      grade, // Shorthand notation
+      grade: grade,
     };
   });
 
@@ -18,4 +19,4 @@ function updateStudentGradeByCity(studentList, city, newGrades) {
   return updatedStudents;
 }
 
-export default updateStudentGradeByCity;
+export default updateStudentGradeByCity;  
